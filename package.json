@@ -1,0 +1,34 @@
+{
+  "name": "node-minio",
+  "version": "1.0.0",
+  "description": "Async Minio(S3 compatible high performance object storage and retrieval) client for promises support in NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Minio",
+    "Minio",
+    "client",
+    "Object",
+    "storage",
+    "S3",
+    "compatible",
+    "minio",
+    "promisify",
+    "async",
+    "minio",
+    "client"
+  ],
+  "author": "Darshit Vora",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "fs-promise": "^2.0.3",
+    "fsp": "^0.1.2",
+    "minio": "^7.0.12"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.3"
+  }
+}

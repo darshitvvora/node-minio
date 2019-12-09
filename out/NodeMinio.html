@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: NodeMinio</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
+    <link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: NodeMinio</h1>
+
+
+    <section>
+
+        <header>
+
+            <h2><span class="attribs"><span class="type-signature"></span></span>NodeMinio<span class="signature">(config, bucket)</span><span
+                    class="type-signature"></span></h2>
+
+
+        </header>
+
+        <article>
+            <div class="container-overview">
+
+
+                <h4 class="name" id="NodeMinio"><span class="type-signature"></span>new NodeMinio<span
+                        class="signature">(config, bucket)</span><span class="type-signature"></span></h4>
+
+
+                <div class="description">
+                    Minio Helper
+                </div>
+
+
+                <h5>Parameters:</h5>
+
+
+                <table class="params">
+                    <thead>
+                    <tr>
+
+                        <th>Name</th>
+
+
+                        <th>Type</th>
+
+
+                        <th class="last">Description</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+
+                    <tr>
+
+                        <td class="name"><code>config</code></td>
+
+
+                        <td class="type">
+
+
+                            <span class="param-type">object</span>
+
+
+                        </td>
+
+
+                        <td class="description last"></td>
+                    </tr>
+
+
+                    <tr>
+
+                        <td class="name"><code>bucket</code></td>
+
+
+                        <td class="type">
+
+
+                            <span class="param-type">string</span>
+
+
+                        </td>
+
+
+                        <td class="description last"></td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+
+                <dl class="details">
+
+
+                    <dt class="tag-source">Source:</dt>
+                    <dd class="tag-source">
+                        <ul class="dummy">
+                            <li>
+                                <a href="index.js.html">index.js</a>, <a href="index.js.html#line27">line 27</a>
+                            </li>
+                        </ul>
+                    </dd>
+
+
+                </dl>
+
+
+            </div>
+
+
+            <h3 class="subsection-title">Methods</h3>
+
+
+            <h4 class="name" id="base64Upload"><span class="type-signature"></span>base64Upload<span class="signature">(minioObject)</span><span
+                    class="type-signature"> &rarr; {object}</span></h4>
+
+
+            <div class="description">
+                Takes and object with 2 attributes {object, base64String}.
+                Asynchronously uploads file on specified path and returns promise
+            </div>
+
+
+            <h5>Parameters:</h5>
+
+
+            <table class="params">
+                <thead>
+                <tr>
+
+                    <th>Name</th>
+
+
+                    <th>Type</th>
+
+
+                    <th class="last">Description</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                <tr>
+
+                    <td class="name"><code>minioObject</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">object</span>
+
+
+                    </td>
+
+
+                    <td class="description last">Contains an object with filepath, bucket and base64string</td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <dl class="details">
+
+
+                <dt class="tag-source">Source:</dt>
+                <dd class="tag-source">
+                    <ul class="dummy">
+                        <li>
+                            <a href="index.js.html">index.js</a>, <a href="index.js.html#line95">line 95</a>
+                        </li>
+                    </ul>
+                </dd>
+
+
+            </dl>
+
+
+            <h5>Returns:</h5>
+
+
+            <div class="param-desc">
+                returns promise object
+            </div>
+
+
+            <dl>
+                <dt>
+                    Type
+                </dt>
+                <dd>
+
+                    <span class="param-type">object</span>
+
+
+                </dd>
+            </dl>
+
+
+            <h5>Example</h5>
+
+            <pre class="prettyprint"><code>const Minio = require('node-minio');
+
+async function uploadFile(file) {
+    const { base64: base64String, filename } = file;
+    const extension = filename.split('.').pop();
+    const fileName = moment().format('YYYY_MM_DD_hh_mm_ss_a');
+    const object = `sampleFile/${fileName}.${extension}`;
+
+    await Minio.base64Upload({ object, base64String });
+    return object;
+  }</code></pre>
+
+
+            <h4 class="name" id="bufferUpload"><span class="type-signature"></span>bufferUpload<span class="signature">(minioObject)</span><span
+                    class="type-signature"> &rarr; {object}</span></h4>
+
+
+            <div class="description">
+                Takes and object with 3 or 4 attributes {object, base64String, bucket, buffer}.
+                Uploads file in specified minio bucket. This function is internally used by
+                base64Upload function
+            </div>
+
+
+            <h5>Parameters:</h5>
+
+
+            <table class="params">
+                <thead>
+                <tr>
+
+                    <th>Name</th>
+
+
+                    <th>Type</th>
+
+
+                    <th class="last">Description</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                <tr>
+
+                    <td class="name"><code>minioObject</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">object</span>
+
+
+                    </td>
+
+
+                    <td class="description last">Contains an object with filepath, bucket and base64string</td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <dl class="details">
+
+
+                <dt class="tag-source">Source:</dt>
+                <dd class="tag-source">
+                    <ul class="dummy">
+                        <li>
+                            <a href="index.js.html">index.js</a>, <a href="index.js.html#line66">line 66</a>
+                        </li>
+                    </ul>
+                </dd>
+
+
+            </dl>
+
+
+            <h5>Returns:</h5>
+
+
+            <div class="param-desc">
+                returns promise object
+            </div>
+
+
+            <dl>
+                <dt>
+                    Type
+                </dt>
+                <dd>
+
+                    <span class="param-type">object</span>
+
+
+                </dd>
+            </dl>
+
+
+            <h5>Example</h5>
+
+            <pre class="prettyprint"><code>const Minio = require('node-minio');
+
+async function uploadFile(file) {
+    const { base64: base64String, filename } = file;
+    const extension = filename.split('.').pop();
+    const fileName = moment().format('YYYY_MM_DD_hh_mm_ss_a');
+    const object = `sampleFile/${fileName}.${extension}`;
+    const buffer = Buffer.from(base64String, 'base64');
+
+    await Minio.bufferUpload({ object, base64String, buffer });
+    return object;
+  }</code></pre>
+
+
+            <h4 class="name" id="viewLink"><span class="type-signature"></span>viewLink<span class="signature">(minioObject, FSCompat)</span><span
+                    class="type-signature"> &rarr; {object}</span></h4>
+
+
+            <div class="description">
+                Takes and object with 2 attributes {object, bucket, expires}.
+                Generates dynamic Minio URL for accessing file with expiry
+            </div>
+
+
+            <h5>Parameters:</h5>
+
+
+            <table class="params">
+                <thead>
+                <tr>
+
+                    <th>Name</th>
+
+
+                    <th>Type</th>
+
+
+                    <th class="last">Description</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                <tr>
+
+                    <td class="name"><code>minioObject</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">object</span>
+
+
+                    </td>
+
+
+                    <td class="description last">Contains an object with filepath, bucket, expiry time</td>
+                </tr>
+
+
+                <tr>
+
+                    <td class="name"><code>FSCompat</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">boolean</span>
+
+
+                    </td>
+
+
+                    <td class="description last">Removes forward slash (/) from file path</td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <dl class="details">
+
+
+                <dt class="tag-source">Source:</dt>
+                <dd class="tag-source">
+                    <ul class="dummy">
+                        <li>
+                            <a href="index.js.html">index.js</a>, <a href="index.js.html#line124">line 124</a>
+                        </li>
+                    </ul>
+                </dd>
+
+
+            </dl>
+
+
+            <h5>Returns:</h5>
+
+
+            <div class="param-desc">
+                returns promise object
+            </div>
+
+
+            <dl>
+                <dt>
+                    Type
+                </dt>
+                <dd>
+
+                    <span class="param-type">object</span>
+
+
+                </dd>
+            </dl>
+
+
+            <h5>Example</h5>
+
+            <pre class="prettyprint"><code>const Minio = require('node-minio');
+
+async function viewFile(fileName) {
+    const filePath= 'sampleFile/${fileName}.pdf'
+
+   const url = await minio
+    .viewLink({
+      object: filePath,
+    }, false);
+  return res.json(url);
+  }</code></pre>
+
+
+        </article>
+
+    </section>
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Classes</h3>
+    <ul>
+        <li><a href="NodeMinio.html">NodeMinio</a></li>
+    </ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 09 2019 14:26:13
+    GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Global</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
+    <link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Global</h1>
+
+
+    <section>
+
+        <header>
+
+            <h2></h2>
+
+
+        </header>
+
+        <article>
+            <div class="container-overview">
+
+
+                <dl class="details">
+
+
+                </dl>
+
+
+            </div>
+
+
+            <h3 class="subsection-title">Methods</h3>
+
+
+            <h4 class="name" id="base64Upload"><span class="type-signature"></span>base64Upload<span class="signature">(minioObject)</span><span
+                    class="type-signature"> &rarr; {object}</span></h4>
+
+
+            <div class="description">
+                Takes and object with 2 attributes {object, base64String}.
+                Asynchronously uploads file on specified path and returns promise
+            </div>
+
+
+            <h5>Parameters:</h5>
+
+
+            <table class="params">
+                <thead>
+                <tr>
+
+                    <th>Name</th>
+
+
+                    <th>Type</th>
+
+
+                    <th class="last">Description</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                <tr>
+
+                    <td class="name"><code>minioObject</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">object</span>
+
+
+                    </td>
+
+
+                    <td class="description last">Contains an object with filepath and base64string</td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <dl class="details">
+
+
+                <dt class="tag-source">Source:</dt>
+                <dd class="tag-source">
+                    <ul class="dummy">
+                        <li>
+                            <a href="index.js.html">index.js</a>, <a href="index.js.html#line76">line 76</a>
+                        </li>
+                    </ul>
+                </dd>
+
+
+            </dl>
+
+
+            <h5>Returns:</h5>
+
+
+            <div class="param-desc">
+                returns promise object
+            </div>
+
+
+            <dl>
+                <dt>
+                    Type
+                </dt>
+                <dd>
+
+                    <span class="param-type">object</span>
+
+
+                </dd>
+            </dl>
+
+
+            <h5>Example</h5>
+
+            <p class="code-caption">Example call</p>
+
+            <pre class="prettyprint"><code>const Minio = require('node-minio');
+
+async function uploadFile(file) {
+    const { base64: base64String, filename } = file;
+    const extension = filename.split('.').pop();
+    const fileName = moment().format('YYYY_MM_DD_hh_mm_ss_a');
+    const object = `sampleFile/${fileName}.${extension}`;
+
+    await Minio.base64Upload({ object, base64String });
+    return object;
+  }</code></pre>
+
+
+            <h4 class="name" id="qualifyBucket"><span class="type-signature"></span>qualifyBucket<span
+                    class="signature">(a, b, c<span class="signature-attributes">opt</span>)</span><span
+                    class="type-signature"> &rarr; {number}</span></h4>
+
+
+            <div class="description">
+                Takes 2 numbers and returns their sum.
+            </div>
+
+
+            <h5>Parameters:</h5>
+
+
+            <table class="params">
+                <thead>
+                <tr>
+
+                    <th>Name</th>
+
+
+                    <th>Type</th>
+
+
+                    <th>Attributes</th>
+
+
+                    <th>Default</th>
+
+
+                    <th class="last">Description</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                <tr>
+
+                    <td class="name"><code>a</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">number</span>
+
+
+                    </td>
+
+
+                    <td class="attributes">
+
+
+                    </td>
+
+
+                    <td class="default">
+
+                    </td>
+
+
+                    <td class="description last">the first number</td>
+                </tr>
+
+
+                <tr>
+
+                    <td class="name"><code>b</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">number</span>
+
+
+                    </td>
+
+
+                    <td class="attributes">
+
+
+                    </td>
+
+
+                    <td class="default">
+
+                    </td>
+
+
+                    <td class="description last">the second number</td>
+                </tr>
+
+
+                <tr>
+
+                    <td class="name"><code>c</code></td>
+
+
+                    <td class="type">
+
+
+                        <span class="param-type">number</span>
+
+
+                    </td>
+
+
+                    <td class="attributes">
+
+                        &lt;optional><br>
+
+
+                    </td>
+
+
+                    <td class="default">
+
+                        0
+
+                    </td>
+
+
+                    <td class="description last">the optional third number</td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <dl class="details">
+
+
+                <dt class="tag-source">Source:</dt>
+                <dd class="tag-source">
+                    <ul class="dummy">
+                        <li>
+                            <a href="index.js.html">index.js</a>, <a href="index.js.html#line37">line 37</a>
+                        </li>
+                    </ul>
+                </dd>
+
+
+            </dl>
+
+
+            <h5>Returns:</h5>
+
+
+            <div class="param-desc">
+                the sum of a and b
+            </div>
+
+
+            <dl>
+                <dt>
+                    Type
+                </dt>
+                <dd>
+
+                    <span class="param-type">number</span>
+
+
+                </dd>
+            </dl>
+
+
+        </article>
+
+    </section>
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Global</h3>
+    <ul>
+        <li><a href="global.html#base64Upload">base64Upload</a></li>
+        <li><a href="global.html#qualifyBucket">qualifyBucket</a></li>
+    </ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 09 2019 13:05:22
+    GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
