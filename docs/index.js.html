@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <title>JSDoc: Source: index.js</title>
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="styles/prettify-tomorrow.css" rel="stylesheet" type="text/css">
-    <link href="styles/jsdoc-default.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
 
 <body>
@@ -19,7 +19,11 @@
 
     <h1 class="page-title">Source: index.js</h1>
 
+    
 
+
+
+    
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
@@ -48,7 +52,7 @@ const Bluebird = require('bluebird');
  * @param {object} config
  * @param {string} bucket
  */
-const NodeMinio = function(config, bucket){
+const NodeMinio = function (config, bucket) {
     this.config = config;
     this.bucket = bucket;
     this.Minio = new minio.Client(this.config.minio);
@@ -144,7 +148,6 @@ NodeMinio.prototype.base64Upload = (minioObject) => {
  *
  * @returns {object} returns promise object
  */
-
 NodeMinio.prototype.viewLink = (minioObject, FSCompat = false) => {
     const minObj = minioObject;
     minObj.bucket = minObj.bucket || this.bucket; // Bucket name always in lowercaseObj
@@ -174,6 +177,28 @@ NodeMinio.prototype.viewLink = (minioObject, FSCompat = false) => {
         });
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.listDirectoryObjects = async (minioObject) => {
     const minObj = minioObject;
     minObj.bucket = minObj.bucket || this.bucket; // Bucket name always in lowercaseObj
@@ -183,7 +208,7 @@ NodeMinio.prototype.listDirectoryObjects = async (minioObject) => {
     }
 
     return new Promise((res, rej) => {
-        const objectsStream =this.Minio.listObjects(minObj.bucket, qualifyBucket(minObj.object), false);
+        const objectsStream = this.Minio.listObjects(minObj.bucket, qualifyBucket(minObj.object), false);
         const data = [];
         objectsStream.on('data', (obj) => {
             data.push(obj);
@@ -197,6 +222,28 @@ NodeMinio.prototype.listDirectoryObjects = async (minioObject) => {
     });
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.downloadLinkBase = (minioObject) => {
     if (!minioObject.name) return console.error('File Name required for download');
     const minObj = minioObject;
@@ -212,6 +259,28 @@ NodeMinio.prototype.downloadLinkBase = (minioObject) => {
     );
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.downloadLink = (minioObject, qualify = false) => {
     const minObj = minioObject;
     minObj.bucket = minObj.bucket || this.bucket; // Bucket name always in lowercase
@@ -226,6 +295,28 @@ NodeMinio.prototype.downloadLink = (minioObject, qualify = false) => {
         });
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.retryDownloadLink = (minioObject) => {
     const minObj = minioObject;
     minObj.bucket = minObj.bucket || this.bucket; // Bucket name always in lowercase
@@ -245,6 +336,28 @@ NodeMinio.prototype.retryDownloadLink = (minioObject) => {
         });
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.uploadLink = (minioObject) => {
     const minObj = minioObject;
     minObj.bucket = minObj.bucket || this.bucket; // Bucket name always in lowercaseObj
@@ -252,6 +365,28 @@ NodeMinio.prototype.uploadLink = (minioObject) => {
     return this.Minio.presignedPutObjectAsync(minObj.bucket, qualifyBucket(minObj.object), minObj.expires);
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.uploadTemp = (minioObject) => {
     const minObj = minioObject;
     const fileStream = fsp.createReadStream(minioObject.temp);
@@ -259,8 +394,52 @@ NodeMinio.prototype.uploadTemp = (minioObject) => {
         .putObjectAsync(this.bucket, minObj.object, fileStream, stats.size, 'application/octet-stream'));
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.base64UploadMulti = minioObjects => Promise.all(minioObjects.map(m => this.Minio.base64Upload(m)));
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.customCopyObject = (minioObject) => {
     const conds = new minio.CopyConditions();
 
@@ -282,6 +461,28 @@ NodeMinio.prototype.customCopyObject = (minioObject) => {
     );
 };
 
+/**
+ * Takes and object with 2 attributes {object, bucket, expires}.
+ * Lists all the directories in current folder
+ * @example
+ *
+ * const Minio = require('node-minio');
+ *
+ * async function listDirectory(fileName) {
+ *     const filePath= 'sampleFile/${fileName}.pdf'
+ *
+ *    const url = await minio
+ *     .viewLink({
+ *       object: filePath,
+ *     }, false);
+ *   return res.json(url);
+ *   }
+ * @memberof NodeMinio
+ * @param   {object} minioObject  Contains an object with filepath, bucket, expiry time
+ * @param   {boolean} FSCompat  Removes forward slash (/) from file path
+ *
+ * @returns {object} returns promise object
+ */
 NodeMinio.prototype.getFileStream = minioObject => new Promise(((resolve, reject) => {
     this.Minio.getObject(
         minioObject.bucket || this.bucket, minioObject.object,
@@ -297,24 +498,21 @@ module.exports = NodeMinio;</code></pre>
     </section>
 
 
+
+
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2>
-    <h3>Classes</h3>
-    <ul>
-        <li><a href="NodeMinio.html">NodeMinio</a></li>
-    </ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="NodeMinio.html">NodeMinio</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 09 2019 14:26:13
-    GMT+0530 (India Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Dec 09 2019 15:48:27 GMT+0530 (IST)
 </footer>
 
 <script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"></script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

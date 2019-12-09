@@ -21,7 +21,7 @@
     "client"
   ],
   "author": "Darshit Vora",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.7.2",
     "fs-promise": "^2.0.3",
@@ -30,5 +30,17 @@
   },
   "devDependencies": {
     "jsdoc": "^3.6.3"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darshitvvora/node-minio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darshitvvora/node-minio/issues"
+  },
+  "homepage": "https://github.com/darshitvvora/node-minio#readme"
 }

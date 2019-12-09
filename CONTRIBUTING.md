@@ -32,7 +32,7 @@ ones.
         git branch fix-for-issue-1
         git checkout fix-for-issue-1
 
-   Here 'fix-for-issue-395' is the name of the branch.  Feel free to use whatever
+   Here 'fix-for-issue-1' is the name of the branch.  Feel free to use whatever
    you want.  We'll call this the ```<change branch>```.  This is the branch that
    you will eventually issue your pull request from.
 
