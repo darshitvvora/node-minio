@@ -1,6 +1,6 @@
 {
   "name": "node-minio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Async Minio(S3 compatible high performance object storage and retrieval) client for promises support in NodeJS",
   "main": "src/index.js",
   "scripts": {
