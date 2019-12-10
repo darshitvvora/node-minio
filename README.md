@@ -16,10 +16,27 @@ To install the latest version on npm locally and save it in your package's
     npm install --save node-minio
 
 ## Usage
-+ Upload a base64 file to Minio Bucket using NodeJS
-``` javascript
-  const Minio = require('node-minio');
++ Initialize Minio Object
+```javascript
+  const NodeMinio = require('node-minio');
  
+  const config = {
+      minio: {
+        endPoint: "192.168.23.100",
+        accessKey: "SN8JBGY43WPMFT0R56fsdfdsf",
+        secretKey: "fdfdfdfd+3R9e/x4V0F6Xpjtfdsfd",
+        secure: false,
+        port: 8000,
+      },
+      errorFileUrl: "/sample/errorfile.pdf",
+      bucket: "sample"     
+  }
+ 
+  const Minio = new NodeMinio(config);
+```
+
++ Upload a base64 file to Minio Bucket using NodeJS
+```javascript
   async function uploadFile(file) {
       const { base64: base64String, filename } = file;
       const extension = filename.split('.').pop();
@@ -28,21 +45,19 @@ To install the latest version on npm locally and save it in your package's
  
       await Minio.base64Upload({ object, base64String });
       return object;
-    }
+  }
 ```
 + Generate dynamic expiry URL to access file from bucket
-``` javascript
-   const Minio = require('node-minio');
+```javascript
    
     async function viewFile(fileName) {
-        const filePath= 'sampleFile/${fileName}.pdf'
-   
-       const url = await minio
+       const filePath= 'sampleFile/${fileName}.pdf'
+       const url = await Minio
         .viewLink({
           object: filePath,
         }, false);
-      return res.json(url);
-      }
+      return url;
+    }
 ```
 
 

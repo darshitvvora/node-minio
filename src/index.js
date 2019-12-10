@@ -19,14 +19,31 @@ const Bluebird = require('bluebird');
 
 /**
  * Minio Helper
+ * Initialize Node Minio Object
+ * @example
+ * const NodeMinio = require('node-minio');
+ *
+ * const config = {
+ *     minio: {
+ *       endPoint: "192.168.23.100",
+ *       accessKey: "SN8JBGY43WPMFT0R56fsdfdsf",
+ *       secretKey: "fdfdfdfd+3R9e/x4V0F6Xpjtfdsfd",
+ *       secure: false,
+ *       port: 8000,
+ *     },
+ *     errorFileUrl: "/sample/errorfile.pdf",
+ *     bucket: "sample"
+ * }
+
+ const Minio = new NodeMinio(config, );
  * @class
  * @constructor
  * @param {object} config
  * @param {string} bucket
  */
-const NodeMinio = function (config, bucket) {
+const NodeMinio = function (config) {
     this.config = config;
-    this.bucket = bucket;
+    this.bucket = config.bucket;
     this.Minio = new minio.Client(this.config.minio);
     Bluebird.promisifyAll(Object.getPrototypeOf(this.Minio));
     return this.Minio;
@@ -46,7 +63,20 @@ function qualifyBucket(bucketName) {
  * Uploads file in specified minio bucket. This function is internally used by
  * base64Upload function
  * @example
- * const Minio = require('node-minio');
+ * const NodeMinio = require('node-minio');
+ *
+ * const config = {
+ *     minio: {
+        endPoint: process.env.MINIO_ENDPOINT,
+        accessKey: process.env.MINIO_ACCESS_KEY,
+        secretKey: process.env.MINIO_SECRET_KEY,
+        secure: false,
+        port: 8000,
+      },
+      errorFileUrl: "/sample/errorfile.pdf"
+  }
+ *
+ * const Minio = new NodeMinio(config);
  *
  * async function uploadFile(file) {
  *     const { base64: base64String, filename } = file;
@@ -76,7 +106,20 @@ NodeMinio.prototype.bufferUpload = (minioObject) => {
  * Takes and object with 2 attributes {object, base64String}.
  * Asynchronously uploads file on specified path and returns promise
  * @example
- * const Minio = require('node-minio');
+ * const NodeMinio = require('node-minio');
+ *
+ * const config = {
+ *     minio: {
+        endPoint: process.env.MINIO_ENDPOINT,
+        accessKey: process.env.MINIO_ACCESS_KEY,
+        secretKey: process.env.MINIO_SECRET_KEY,
+        secure: false,
+        port: 8000,
+      },
+      errorFileUrl: "/sample/errorfile.pdf"
+  }
+ *
+ * const Minio = new NodeMinio(config);
  *
  * async function uploadFile(file) {
  *     const { base64: base64String, filename } = file;
@@ -103,7 +146,20 @@ NodeMinio.prototype.base64Upload = (minioObject) => {
  * Generates dynamic Minio URL for accessing file with expiry
  * @example
  *
- * const Minio = require('node-minio');
+ * const NodeMinio = require('node-minio');
+ *
+ * const config = {
+ *     minio: {
+        endPoint: process.env.MINIO_ENDPOINT,
+        accessKey: process.env.MINIO_ACCESS_KEY,
+        secretKey: process.env.MINIO_SECRET_KEY,
+        secure: false,
+        port: 8000,
+      },
+      errorFileUrl: "/sample/errorfile.pdf"
+  }
+ *
+ * const Minio = new NodeMinio(config);
  *
  * async function viewFile(fileName) {
  *     const filePath= 'sampleFile/${fileName}.pdf'
