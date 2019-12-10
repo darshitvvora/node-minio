@@ -66,7 +66,7 @@ To install the latest version on npm locally and save it in your package's
 
 ## License
 
-Node-Minio is copyright (c) 2019-present Darshit Vora <darshitvvora@gmail.com> and
+Node-Minio is copyright (c) 2019-present Darshit Vora <dvvrocks@gmail.com> and
 the [contributors to Node-Minio](https://github.com/darshitvvora/node-minio/graphs/contributors).
 
 Node-Minio is free software, licensed under the MIT License. See the
