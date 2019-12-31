@@ -211,7 +211,7 @@ const config = {
     bucket: "sample"
 }
 
- const Minio = new NodeMinio(config, );</code></pre>
+ const Minio = new NodeMinio(config);</code></pre>
 
 
 
@@ -429,7 +429,7 @@ async function uploadFile(file) {
     
 
     
-    <h4 class="name" id="base64UploadMulti"><span class="type-signature"></span>base64UploadMulti<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="base64UploadMulti"><span class="type-signature"></span>base64UploadMulti<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -438,7 +438,7 @@ async function uploadFile(file) {
 
 <div class="description">
     Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
+Uploads multiple base64 files. Used in sync with Multer
 </div>
 
 
@@ -447,78 +447,6 @@ Lists all the directories in current folder
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>minioObject</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -554,7 +482,7 @@ Lists all the directories in current folder
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line447">line 447</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line426">line 426</a>
     </li></ul></dd>
     
 
@@ -579,45 +507,8 @@ Lists all the directories in current folder
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    returns promise object
-</div>
 
 
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const Minio = require('node-minio');
-
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
-
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
-  }</code></pre>
 
 
 
@@ -817,7 +708,7 @@ async function uploadFile(file) {
     
 
     
-    <h4 class="name" id="customCopyObject"><span class="type-signature"></span>customCopyObject<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="customCopyObject"><span class="type-signature"></span>customCopyObject<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -826,7 +717,96 @@ async function uploadFile(file) {
 
 <div class="description">
     Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
+Copies file from one bucket to another
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line432">line 432</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="downloadLink"><span class="type-signature"></span>downloadLink<span class="signature">(minioObject)</span><span class="type-signature"> &rarr; {url}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Takes an object with 2 attributes {object, name}.
+Create a downloadable link for file
 </div>
 
 
@@ -878,30 +858,7 @@ Lists all the directories in current folder
 
             
 
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
+            <td class="description last">Contains an object with  bucket, filepath</td>
         </tr>
 
     
@@ -942,7 +899,7 @@ Lists all the directories in current folder
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line471">line 471</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line307">line 307</a>
     </li></ul></dd>
     
 
@@ -971,7 +928,7 @@ Lists all the directories in current folder
 
         
 <div class="param-desc">
-    returns promise object
+    returns url
 </div>
 
 
@@ -982,7 +939,7 @@ Lists all the directories in current folder
     </dt>
     <dd>
         
-<span class="param-type">object</span>
+<span class="param-type">url</span>
 
 
     </dd>
@@ -997,15 +954,16 @@ Lists all the directories in current folder
     
     <pre class="prettyprint"><code>const Minio = require('node-minio');
 
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
+async function downloadFile(name) {
+      const file = {
+          object: 'sampleFiles/',
+          name: `${name}_${
+            moment().format('YYYY-DD-MM')}.${ext}`,
+        };
 
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
-  }</code></pre>
+      return Minio.downloadLink(file)
+            .then(downloadLink => res.redirect(downloadLink));
+            }</code></pre>
 
 
 
@@ -1015,7 +973,7 @@ async function listDirectory(fileName) {
     
 
     
-    <h4 class="name" id="downloadLink"><span class="type-signature"></span>downloadLink<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="downloadLinkBase"><span class="type-signature"></span>downloadLinkBase<span class="signature">(minioObject)</span><span class="type-signature"> &rarr; {url}</span></h4>
     
 
     
@@ -1023,8 +981,8 @@ async function listDirectory(fileName) {
 
 
 <div class="description">
-    Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
+    Takes an object with 2 attributes {object, name}.
+Create a downloadable link for file
 </div>
 
 
@@ -1076,30 +1034,7 @@ Lists all the directories in current folder
 
             
 
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
+            <td class="description last">Contains an object with  bucket, filepath</td>
         </tr>
 
     
@@ -1140,7 +1075,7 @@ Lists all the directories in current folder
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line312">line 312</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line271">line 271</a>
     </li></ul></dd>
     
 
@@ -1169,7 +1104,7 @@ Lists all the directories in current folder
 
         
 <div class="param-desc">
-    returns promise object
+    returns url
 </div>
 
 
@@ -1180,7 +1115,7 @@ Lists all the directories in current folder
     </dt>
     <dd>
         
-<span class="param-type">object</span>
+<span class="param-type">url</span>
 
 
     </dd>
@@ -1195,15 +1130,16 @@ Lists all the directories in current folder
     
     <pre class="prettyprint"><code>const Minio = require('node-minio');
 
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
+async function downloadFile(name) {
+      const file = {
+          object: 'sampleFiles/',
+          name: `${name}_${
+            moment().format('YYYY-DD-MM')}.${ext}`,
+        };
 
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
-  }</code></pre>
+      return Minio.downloadLinkBase(file)
+            .then(downloadLink => res.redirect(downloadLink));
+            }</code></pre>
 
 
 
@@ -1213,7 +1149,7 @@ async function listDirectory(fileName) {
     
 
     
-    <h4 class="name" id="downloadLinkBase"><span class="type-signature"></span>downloadLinkBase<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="getFileStream"><span class="type-signature"></span>getFileStream<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -1222,7 +1158,7 @@ async function listDirectory(fileName) {
 
 <div class="description">
     Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
+Gets object from minio as a stream
 </div>
 
 
@@ -1231,78 +1167,6 @@ Lists all the directories in current folder
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>minioObject</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1338,7 +1202,7 @@ Lists all the directories in current folder
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line275">line 275</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line458">line 458</a>
     </li></ul></dd>
     
 
@@ -1363,243 +1227,8 @@ Lists all the directories in current folder
 
 
 
-<h5>Returns:</h5>
 
-        
-<div class="param-desc">
-    returns promise object
-</div>
 
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const Minio = require('node-minio');
-
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
-
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
-  }</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="getFileStream"><span class="type-signature"></span>getFileStream<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>minioObject</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line514">line 514</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    returns promise object
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const Minio = require('node-minio');
-
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
-
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
-  }</code></pre>
 
 
 
@@ -1617,7 +1246,7 @@ async function listDirectory(fileName) {
 
 
 <div class="description">
-    Takes and object with 2 attributes {object, bucket, expires}.
+    Takes an object with 1 attributes {object}.
 Lists all the directories in current folder
 </div>
 
@@ -1734,7 +1363,7 @@ Lists all the directories in current folder
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line230">line 230</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line227">line 227</a>
     </li></ul></dd>
     
 
@@ -1789,13 +1418,364 @@ Lists all the directories in current folder
     
     <pre class="prettyprint"><code>const Minio = require('node-minio');
 
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
+async function listFilesInDirectory() {
 
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
+ const baseUrl = "/sampleFile";
+  let fileList = await Minio.listDirectoryObjects({ object: baseUrl });
+  return fileList;
+  }</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="retryDownloadLink"><span class="type-signature"></span>retryDownloadLink<span class="signature">(minioObject)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Takes and object with 2 attributes {object}.
+Used to retry alternative file to be downloaded. Here in tha example below we dont get original file than we search for -rst file and try download it
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>minioObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Contains an object with filepath
+*</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line344">line 344</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    returns download link
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>const Minio = require('node-minio');
+
+async function retryFileFromMinio(fileName) {
+     const retryObject = fileName.path.toLowerCase();
+     const name = `${fileName}.pdf`.replace(/ /g, '_');
+
+   const url = await Minio
+    .retryDownloadLink({
+    name,
+    retryObject,
+    object: retryObject.replace(/\.pdf$/g, '-rst.pdf'),
+  });
+  }</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="uploadLink"><span class="type-signature"></span>uploadLink<span class="signature">(minioObject)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Takes and object with 2 attributes {object, bucket, expires}.
+Generates and returns presigned URL for HTTP PUT operations.
+Clients may point to this URL to upload objects directly to a bucket even if it is private.
+This presigned URL can have an associated expiration time in seconds after which the URL is no longer valid.
+The default value is 7 days.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>minioObject</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Contains an object with option bucket name and expiry</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line384">line 384</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    returns url which can be used to upload file
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>https://docs.min.io/docs/upload-files-from-browser-using-pre-signed-urls.html
+https://docs.min.io/docs/javascript-client-api-reference.html#presignedPutObject
+const Minio = require('node-minio');
+
+async function getUploadLink(req,res) {
+   const url = await Minio
+    .uploadLink({});
   return res.json(url);
   }</code></pre>
 
@@ -1807,7 +1787,7 @@ async function listDirectory(fileName) {
     
 
     
-    <h4 class="name" id="retryDownloadLink"><span class="type-signature"></span>retryDownloadLink<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id="uploadTemp"><span class="type-signature"></span>uploadTemp<span class="signature">(minioObject)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -1815,8 +1795,7 @@ async function listDirectory(fileName) {
 
 
 <div class="description">
-    Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
+    Uploads base64 file  from temp path(specified path) to bucket
 </div>
 
 
@@ -1868,30 +1847,7 @@ Lists all the directories in current folder
 
             
 
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
+            <td class="description last">Contains an object with option bucket</td>
         </tr>
 
     
@@ -1932,7 +1888,7 @@ Lists all the directories in current folder
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line348">line 348</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line414">line 414</a>
     </li></ul></dd>
     
 
@@ -1961,7 +1917,7 @@ Lists all the directories in current folder
 
         
 <div class="param-desc">
-    returns promise object
+    returns promise
 </div>
 
 
@@ -1987,410 +1943,17 @@ Lists all the directories in current folder
     
     <pre class="prettyprint"><code>const Minio = require('node-minio');
 
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
-
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
-  }</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="uploadLink"><span class="type-signature"></span>uploadLink<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>minioObject</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line389">line 389</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    returns promise object
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const Minio = require('node-minio');
-
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
-
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
-  }</code></pre>
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="uploadTemp"><span class="type-signature"></span>uploadTemp<span class="signature">(minioObject, FSCompat)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Takes and object with 2 attributes {object, bucket, expires}.
-Lists all the directories in current folder
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>minioObject</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Contains an object with filepath, bucket, expiry time</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>FSCompat</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Removes forward slash (/) from file path</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line418">line 418</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    returns promise object
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>const Minio = require('node-minio');
-
-async function listDirectory(fileName) {
-    const filePath= 'sampleFile/${fileName}.pdf'
-
-   const url = await minio
-    .viewLink({
-      object: filePath,
-    }, false);
-  return res.json(url);
+async function uploadFromTemp(req, res, file) {
+const extension = (file.name || file.filename).split('.').pop().toLowerCase();
+        minioObject = {
+          base64String: file.base64,
+          temp: file.path,
+          object: `sample/${Id}/${Id
+          }_${moment().format('DD-MM-YYYY_hh-mm-ss-a')}.${extension}`,
+        };
+   const file = await Minio
+    .uploadTemp(minioObject);
+  return res.json(file);
   }</code></pre>
 
 
@@ -2628,7 +2191,7 @@ async function viewFile(fileName) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Dec 10 2019 10:20:23 GMT+0530 (IST)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Dec 31 2019 11:38:26 GMT+0530 (IST)
 </footer>
 
 <script> prettyPrint(); </script>
