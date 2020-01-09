@@ -7,6 +7,8 @@ Want to contribute to Node-Minio? Please read `CONTRIBUTING.md`.
 Installation
 ----------------------
 
+Steps to setup minio on linux server - [link](https://github.com/darshitvvora/node-minio/wiki/Install-and-configure-Min.io-on-new-Linode)
+
 Node-Minio supports stable versions of Node.js 8.11.0 and later. You can install
 Node Minio in your project's `node_modules` folder.
 
